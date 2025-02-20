@@ -323,11 +323,13 @@ body {
 /* Bienvenida */
 .bienvenida {
   text-align: center;
-  margin: auto; 
+  padding: 1em 1em;
+  margin: 2em auto;
+  border-radius: 5px;
 }
 
 .bienvenida h2 {
-  font-size: 2.5em;
+  font-size: 1.5em;
   margin-bottom: 0.5em;
   color: var(--rosa);
   animation: fadeIn 1.5s ease-in-out;
