@@ -1,4 +1,8 @@
 /* Variables de color */
+.recibir{
+  font-size: 30px;
+  font-weight: bold;
+}
 :root {
   --verde-azulado: #5eb6a7;
   --rosa: #f7a9a8;
