@@ -1,8 +1,4 @@
 /* Variables de color */
-.recibir {
-  font-size: 30px;
-  font-weight: bold;
-}
 :root {
   --verde-azulado: #5eb6a7;
   --rosa: #f7a9a8;
@@ -327,13 +323,14 @@ body {
 /* Bienvenida */
 .bienvenida {
   text-align: center;
-  padding: 1em 1em;
+  padding: 3em 1em;
+  background-color: rgba(255, 255, 255, 0.1);
   margin: 2em auto;
-  border-radius: 5px;
+  border-radius: 15px;
 }
 
 .bienvenida h2 {
-  font-size: 1.5em;
+  font-size: 2.5em;
   margin-bottom: 0.5em;
   color: var(--rosa);
   animation: fadeIn 1.5s ease-in-out;
@@ -531,7 +528,7 @@ b {
   color: black; /* Usa un color destacado para enfatizar el texto */
 }
 
-b b {
+b b{
   color: red;
 }
 
@@ -550,11 +547,6 @@ b b {
     height: auto; /* Mantiene la proporción */
   }
 }
-.imagen-producto1,
-.imagen-producto2,
-.imagen-producto3 {
+ .imagen-producto1,.imagen-producto2,.imagen-producto3{
   border-radius: 10px;
-}
-p {
-  color: black;
-}
+ }
