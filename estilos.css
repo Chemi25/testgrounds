@@ -1,3 +1,14 @@
+.product-details {
+  transition: height 0.5s ease;
+}
+
+.hidden-others {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+
 /* Variables de color */
 .recibir {
   font-size: 30px;

@@ -8,19 +8,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const currentDetails = currentProducto.querySelector(".product-details");
 
       if (currentDetails.classList.contains("hidden")) {
-        // Al abrir, guardamos la posición relativa del producto respecto al viewport
-        currentProducto.dataset.initialOffset = currentProducto.getBoundingClientRect().top;
-
-        // Ocultar todos los productos excepto el seleccionado
+        // Al abrir, ocultamos los demás productos usando la clase CSS
         productos.forEach((producto) => {
           if (producto !== currentProducto) {
-            producto.style.opacity = "0";
-            producto.style.visibility = "hidden";
-            producto.style.position = "absolute";
+            producto.classList.add("hidden-others");
           }
         });
 
-        // Mostrar detalles del producto seleccionado
+        // Mostramos los detalles del producto seleccionado
         currentDetails.style.height = `${currentDetails.scrollHeight}px`;
         currentDetails.classList.remove("hidden");
         button.textContent = "Ocultar detalles";
@@ -28,29 +23,25 @@ document.addEventListener("DOMContentLoaded", () => {
           currentDetails.style.height = "auto";
         }, 500);
       } else {
-        // Al cerrar, medimos la posición actual del producto y calculamos la diferencia
+        // Al cerrar, colapsamos los detalles
         currentDetails.style.height = `${currentDetails.scrollHeight}px`;
         setTimeout(() => {
           currentDetails.style.height = "0";
-          currentDetails.classList.add("hidden");
-          productos.forEach((producto) => {
-            producto.style.opacity = "1";
-            producto.style.visibility = "visible";
-            producto.style.position = "relative";
-          });
-          button.textContent = "Ver más detalles";
-
-          // Calcular y ajustar el scroll para mantener la posición visual del producto
-          const initialOffset = Number(currentProducto.dataset.initialOffset) || 0;
-          const currentOffset = currentProducto.getBoundingClientRect().top;
-          const diff = currentOffset - initialOffset;
-          window.scrollBy({ top: diff, behavior: 'auto' });
+          setTimeout(() => {
+            currentDetails.classList.add("hidden");
+            // Restauramos la visibilidad de todos los productos
+            productos.forEach((producto) => {
+              producto.classList.remove("hidden-others");
+            });
+            button.textContent = "Ver más detalles";
+            // No se realiza ningún ajuste de scroll, por lo que la posición se mantiene
+          }, 500);
         }, 0);
       }
     });
   });
 
-  // Desplazar la vista al producto indicado en el hash sin abrir los detalles
+  // Si la URL trae un hash, se desplaza suavemente hasta ese producto, sin abrir sus detalles
   if (window.location.hash) {
     const productId = window.location.hash.substring(1);
     const targetProduct = document.getElementById(productId);
@@ -59,5 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
+
+
+
 
 
