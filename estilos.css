@@ -468,6 +468,11 @@ body {
   font-style: italic;
 }
 
+/* Aplica un margen superior al segundo botón (o a cualquier botón que vaya después de otro botón) */
+.boton + .boton {
+  margin-top: 1rem; /* Ajusta a tu gusto */
+}
+
 .toggle-details {
   cursor: pointer;
   font-weight: bold;

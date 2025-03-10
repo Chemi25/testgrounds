@@ -1,6 +1,4 @@
-// ===============
 // 1. Controlar "Ver más detalles" con animación
-// ===============
 document.addEventListener("DOMContentLoaded", () => {
   const toggleDetailsButtons = document.querySelectorAll(".toggle-details");
   const productos = document.querySelectorAll(".producto");
@@ -44,9 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// ===============
 // 2. Scroll suave por hash (opcional)
-// ===============
 window.addEventListener("load", () => {
   if (window.location.hash) {
     const productId = window.location.hash.substring(1);
@@ -57,20 +53,14 @@ window.addEventListener("load", () => {
   }
 });
 
-// ===============
-// 3. Botón "Versión Neutral": cambia imagen, emojis, título y URL de PayPal
-// ===============
+// 3. Botón "Versión Neutral" con booleano para evitar doble clic
 document.addEventListener("DOMContentLoaded", function () {
   const product = document.getElementById("presupuestoMensual");
   const neutralButton = product.querySelector(".toggle-neutral");
   const img = product.querySelector("img");
   const details = product.querySelector(".product-details");
 
-  // Guardamos el <form> y su acción original
-  const originalForm = details.querySelector("form");
-  const originalFormAction = originalForm.action;
-
-  // Guardamos el contenido completo, imagen y título
+  // Título y contenido originales
   const productTitle = product.querySelector(".detalle-producto h2");
   const originalTitle = productTitle.textContent;
 
@@ -78,37 +68,52 @@ document.addEventListener("DOMContentLoaded", function () {
   const originalImgAlt = img.alt;
   const originalDetailsHTML = details.innerHTML;
 
+  // Formulario y su acción original (si usas PayPal)
+  const originalForm = details.querySelector("form");
+  const originalFormAction = originalForm ? originalForm.action : null;
+
+  // Variable booleana para saber si estamos en versión neutral o no
+  let isNeutral = false;
+
   neutralButton.addEventListener("click", function () {
-    if (neutralButton.textContent.trim() === "Versión Neutral") {
-      // --- Cambiar a versión neutral ---
+    if (!isNeutral) {
+      // 1. Cambiar a versión neutral
+      isNeutral = true;
+
       img.src = "imagenes/plantillaNeutra.png";
       img.alt = "Plantilla Financiera Neutral";
 
-      // Reemplazamos el contenido original (que tiene emojis)
-      // por el mismo contenido sin emojis
+      // Reemplazar contenido para quitar emojis
       let newHTML = originalDetailsHTML.replace(/[💅✨🌸💖🫶🏼]/g, "");
       details.innerHTML = newHTML;
 
-      // Obtenemos el nuevo form (se recreó tras el replace)
+      // Si hay formulario, cambiar su acción al link de PayPal neutral
       const newForm = details.querySelector("form");
-      // Cambiamos su acción a la URL de la versión neutral
-      newForm.action = "https://www.paypal.com/ncp/payment/CZ8E9M7F2YP3S";
+      if (newForm && originalFormAction) {
+        newForm.action = "https://www.paypal.com/ncp/payment/CZ8E9M7F2YP3S";
+      }
 
       // Añadir "(Neutral)" al título
       productTitle.textContent = `${originalTitle} (Neutral)`;
 
-      // Cambiar el texto del botón
+      // Actualizar el texto del botón
       neutralButton.textContent = "Versión Regular";
     } else {
-      // --- Revertir a versión original ---
+      // 2. Revertir a versión original
+      isNeutral = false;
+
       img.src = originalImgSrc;
       img.alt = originalImgAlt;
       details.innerHTML = originalDetailsHTML;
       productTitle.textContent = originalTitle;
 
-      // Restauramos la acción original del form
-      const revertForm = details.querySelector("form");
-      revertForm.action = originalFormAction;
+      // Restaurar la acción original del form
+      if (originalFormAction) {
+        const revertForm = details.querySelector("form");
+        if (revertForm) {
+          revertForm.action = originalFormAction;
+        }
+      }
 
       // Botón vuelve a "Versión Neutral"
       neutralButton.textContent = "Versión Neutral";
