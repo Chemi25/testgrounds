@@ -113,9 +113,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // (c) Breve explicación de la versión neutral
         let neutralExplanation = `
-          <p><b>(Esta versión neutral ofrece el mismo contenido y funcionalidad 
-          que la plantilla original, pero con un diseño más neutro y minimalista.)</b></p>
-        `;
+  <p style="text-align: justify;">
+    <b>Esta versión ofrece el mismo contenido y funcionalidad 
+    que la plantilla original, pero con un diseño neutro y minimalista.</b>
+  </p>
+`;
 
         // (d) Armamos el HTML final
         let finalNeutralHTML =
