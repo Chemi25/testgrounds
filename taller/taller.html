@@ -54,6 +54,10 @@
             justify-content: center;
             align-items: center;
             gap: 15px;
+            min-height: 70px;
+            /* Más altura para mejor centrado */
+            padding: 10px 0;
+            /* Más padding para centrado perfecto */
         }
 
         .logo {
@@ -86,6 +90,10 @@
             font-weight: bold;
             color: #333;
             letter-spacing: -1px;
+            line-height: 45px;
+            /* Igual altura que el logo para alineación perfecta */
+            margin: 0;
+            padding: 0;
         }
 
         /* Hero Section - CORRIDO DEBAJO DEL HEADER */
@@ -500,6 +508,61 @@
             color: white;
         }
 
+        /* Nueva sección de pago por transferencia */
+        .payment-info {
+            background: linear-gradient(135deg, #f7a9a8, #e6d4e7);
+            padding: 25px 20px;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+            margin: 30px auto;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .payment-info::before {
+            content: '🇩🇴';
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.2;
+            right: 15px;
+            top: 15px;
+            font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Android Emoji", sans-serif;
+            filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3));
+        }
+
+        .payment-info h3 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .payment-info p {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .email-link {
+            color: #ffffff;
+            text-decoration: underline;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        .email-link:hover {
+            color: #ffffff;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
         /* Footer */
         footer {
             background-color: #e6d4e7;
@@ -609,10 +672,16 @@
 
             .header-content {
                 gap: 15px;
+                min-height: 75px;
+                /* Aumentado para desktop */
+                padding: 12px 0;
+                /* Más padding en desktop */
             }
 
             .brand-name {
                 font-size: 28px;
+                line-height: 50px;
+                /* Ajustado para el logo más grande en desktop */
             }
 
             .logo {
@@ -784,10 +853,16 @@
 
             .header-content {
                 gap: 10px;
+                min-height: 65px;
+                /* Ajustado para móvil */
+                padding: 10px 0;
+                /* Padding para centrado en móvil */
             }
 
             .brand-name {
                 font-size: 22px;
+                line-height: 40px;
+                /* Ajustado para el logo más pequeño en móvil */
             }
 
             .logo {
@@ -871,6 +946,12 @@
 
             .terms-button {
                 padding: 14px 25px;
+                font-size: 0.95em;
+            }
+
+            .payment-info {
+                padding: 20px 15px;
+                margin: 25px auto;
                 font-size: 0.95em;
             }
 
@@ -1033,7 +1114,7 @@
             <p><strong>En 21 días vas a lograr:</strong></p>
             <ul>
                 <li>Identificar en qué <em>se te está yendo el dinero sin darte cuenta</em>.</li>
-                <li>Crear tu primer sistema de organización financiera (con plantillas prácticas, dinámicas y
+                <li>Crear tu primer sistema de organización financiera con plantillas prácticas, dinámicas y
                     funcionales (y muy lindas, como plus hihi)</li>
                 <li>Aprender a ahorrar <em>sin trauma</em> y a planear tus gastos sin frustrarte</li>
                 <li>Invertir y dar tus primeros pasos en el mundo de las inversiones, de una forma segura y regulada
@@ -1052,7 +1133,6 @@
                 <li>4 clases en vivo (1 por semana más 1 extra muy especial) con ejercicios aplicados en donde no solo
                     hablaremos el pi a pa del manejo y control del money y las inversiones, sino también de la
                     psicología del dinero y cómo preparar tu mente para que esté receptiva al cambio</li>
-                <li>🧠 Un lecture grupal con una experta en neuro*psicología * (pa' trabajar la raíz del desorden)</li>
                 <li>Acompañamiento directo de Liss y María en grupo VIP de WhatsApp, con la mejor comunidad del mundo:
                     llena de personas que comparten tus mismos objetivos!</li>
                 <li>👯‍♀️ Comunidad 10/10: divertida, honesta, con las mismas ganas que tú de poner sus finanzas en
@@ -1073,8 +1153,8 @@
         <div class="content-section">
             <h2>🕒 ¿Cuándo empieza?</h2>
             <ul>
-                <li>📅 Fecha de inicio: <strong>Viernes 8 de agosto</strong></li>
-                <li>📅 Fecha de término: <strong>28 de agosto</strong></li>
+                <li>📅 Fecha de inicio: <strong>Viernes 8 de Agosto</strong></li>
+                <li>📅 Fecha de término: <strong>Viernes 29 de Agosto</strong></li>
                 <li>📲 Todo el contenido e información te llegará por WhatsApp, así que puedes hacerlo desde cualquier
                     lugar y las clases serán grabadas (tendrás acceso a ellas durante 1 año).</li>
             </ul>
@@ -1116,6 +1196,13 @@
         <div style="text-align: center; margin: 40px 0;" id="inscription-section">
             <a href="https://www.paypal.com/ncp/payment/9WL5T89WZVPCG" class="cta-button">¡INSCRÍBETE AHORA!</a>
             <button class="cta-button terms-button" onclick="openModal()">Términos y Condiciones</button>
+        </div>
+
+        <!-- Nueva sección de pago por transferencia -->
+        <div class="payment-info">
+            <h3>🇩🇴 ¿Eres de República Dominicana?</h3>
+            <p>Puedes pagar por transferencia bancaria escribiendo al correo:</p>
+            <p><a href="mailto:planifestord@gmail.com" class="email-link">planifestord@gmail.com</a></p>
         </div>
     </main>
 
