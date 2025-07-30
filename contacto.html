@@ -307,13 +307,19 @@
     }
 
     .faq-item {
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid #eee;
-      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+      border: 2px solid #f0f0f0;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+      border-color: var(--rosa);
+      box-shadow: 0 2px 8px rgba(247, 169, 168, 0.2);
     }
 
     .faq-item:last-child {
-      border-bottom: none;
       margin-bottom: 0;
     }
 
@@ -321,12 +327,48 @@
       font-size: 1.1rem;
       font-weight: 600;
       color: var(--verde-azulado);
-      margin-bottom: 0.5rem;
+      margin: 0;
+      padding: 1.2rem;
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .faq-question:hover {
+      background: linear-gradient(135deg, var(--morado-claro), #dde1e6);
+      color: var(--rosa);
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--rosa);
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+      margin-left: 1rem;
+    }
+
+    .faq-question.active::after {
+      transform: rotate(45deg);
     }
 
     .faq-answer {
       color: #666;
       line-height: 1.6;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      padding: 0 1.2rem;
+    }
+
+    .faq-answer.active {
+      max-height: 150px;
+      padding: 1.2rem;
     }
 
     /* =================== FOOTER =================== */
@@ -575,7 +617,6 @@
         <h2 class="contact-card__title">Soporte Técnico</h2>
         <div class="contact-card__content">
           <p>¿Problemas con tu compra o necesitas ayuda con las plantillas?</p>
-          <p class="mt-2">Te respondemos en menos de 24 horas</p>
           <p class="mt-1">
             <a href="mailto:planifestoRD@gmail.com">planifestoRD@gmail.com</a>
           </p>
@@ -609,7 +650,8 @@
       <h2 class="faq-section__title">Preguntas Frecuentes 🤔</h2>
 
       <div class="faq-item">
-        <div class="faq-question">¿Cuánto tiempo tarda en llegar mi producto después de la compra?</div>
+        <div class="faq-question" onclick="toggleFAQ(this)">¿Cuánto tiempo tarda en llegar mi producto después de la
+          compra?</div>
         <div class="faq-answer">
           Tu producto digital llegará inmediatamente a tu correo después del pago. Si no lo recibes en 1 minuto, revisa
           tu carpeta de spam.
@@ -617,7 +659,7 @@
       </div>
 
       <div class="faq-item">
-        <div class="faq-question">¿Las plantillas funcionan en Excel?</div>
+        <div class="faq-question" onclick="toggleFAQ(this)">¿Las plantillas funcionan en Excel?</div>
         <div class="faq-answer">
           Nuestras plantillas están diseñadas específicamente para Google Sheets y no son compatibles con Excel debido a
           las funciones avanzadas que utilizamos.
@@ -625,15 +667,14 @@
       </div>
 
       <div class="faq-item">
-        <div class="faq-question">¿Puedo compartir las plantillas con mi familia?</div>
+        <div class="faq-question" onclick="toggleFAQ(this)">¿Puedo compartir las plantillas?</div>
         <div class="faq-answer">
-          Las plantillas son para uso personal/familiar inmediato. No se permite la redistribución, reventa o compartir
-          con personas fuera del núcleo familiar.
+          Las plantillas son para uso personal. No se permite la redistribución o reventa.
         </div>
       </div>
 
       <div class="faq-item">
-        <div class="faq-question">¿Ofrecen reembolsos?</div>
+        <div class="faq-question" onclick="toggleFAQ(this)">¿Ofrecen reembolsos?</div>
         <div class="faq-answer">
           Al ser productos digitales, todas las ventas son finales sin reembolso. Te recomendamos revisar bien las
           descripciones antes de comprar.
@@ -641,13 +682,14 @@
       </div>
 
       <div class="faq-item">
-        <div class="faq-question">¿Necesito conocimientos avanzados para usar las plantillas?</div>
+        <div class="faq-question" onclick="toggleFAQ(this)">¿Necesito conocimientos avanzados para usar las plantillas?
+        </div>
         <div class="faq-answer">
           ¡Para nada! Nuestras plantillas están diseñadas para ser súper fáciles de usar. Incluyen videotutoriales y son
           perfectas para principiantes.
         </div>
       </div>
-      </div>
+    </section>
   </main>
 
   <!-- Footer -->
@@ -663,6 +705,29 @@
   </footer>
 
   <script>
+    // =================== FAQ FUNCTIONALITY ===================
+    function toggleFAQ(questionElement) {
+      const answer = questionElement.nextElementSibling;
+      const isActive = questionElement.classList.contains('active');
+
+      // Cerrar todas las otras FAQs
+      document.querySelectorAll('.faq-question.active').forEach(function (q) {
+        if (q !== questionElement) {
+          q.classList.remove('active');
+          q.nextElementSibling.classList.remove('active');
+        }
+      });
+
+      // Toggle la FAQ actual
+      if (isActive) {
+        questionElement.classList.remove('active');
+        answer.classList.remove('active');
+      } else {
+        questionElement.classList.add('active');
+        answer.classList.add('active');
+      }
+    }
+
     // =================== CONTACTO APP CLASS ===================
     class ContactoApp {
       constructor() {
@@ -699,9 +764,6 @@
           link.addEventListener('click', function (e) {
             const email = this.getAttribute('href').replace('mailto:', '');
             console.log('Email clicked:', email);
-
-            // Add analytics tracking here if needed
-            // Analytics.trackEvent('Contact', 'Email Click', email);
           });
         });
       }
@@ -890,3 +952,7 @@
 
       console.log('Planifesto Contacto app initialized successfully! 🚀');
     });
+  </script>
+</body>
+
+</html>
