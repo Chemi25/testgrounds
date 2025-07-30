@@ -350,15 +350,66 @@
       }
     }
 
+    /* Scroll animations for products */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInFromLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInFromRight {
+      from {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
     @keyframes cardPulse {
 
       0%,
       100% {
         transform: scale(1);
+        box-shadow: var(--sombra);
       }
 
       50% {
-        transform: scale(1.02);
+        transform: scale(1.05);
+        box-shadow: var(--sombra-hover);
       }
     }
 
@@ -435,6 +486,49 @@
       overflow: hidden;
       box-shadow: var(--sombra);
       transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(60px);
+    }
+
+    .product-card.animate {
+      animation-duration: 0.4s;
+      animation-fill-mode: both;
+      animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .product-card.animate:nth-child(1) {
+      animation-name: fadeInUp;
+      animation-delay: 0s;
+    }
+
+    .product-card.animate:nth-child(2) {
+      animation-name: slideInFromLeft;
+      animation-delay: 0.05s;
+    }
+
+    .product-card.animate:nth-child(3) {
+      animation-name: slideInFromRight;
+      animation-delay: 0.1s;
+    }
+
+    .product-card.animate:nth-child(4) {
+      animation-name: scaleIn;
+      animation-delay: 0.15s;
+    }
+
+    .product-card.animate:nth-child(5) {
+      animation-name: fadeInUp;
+      animation-delay: 0.2s;
+    }
+
+    .product-card.animate:nth-child(6) {
+      animation-name: slideInFromLeft;
+      animation-delay: 0.25s;
+    }
+
+    .product-card.animate:nth-child(7) {
+      animation-name: slideInFromRight;
+      animation-delay: 0.3s;
     }
 
     .product-card:hover {
@@ -443,14 +537,32 @@
     }
 
     .product-image {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
+      width: calc(100% - 20px);
+      height: 300px;
+      object-fit: contain;
+      object-position: center;
       transition: transform 0.3s ease;
+      background: linear-gradient(135deg, var(--morado-claro) 0%, #f0e6f1 50%, var(--morado-claro) 100%);
+      padding: 15px;
+      border-radius: 20px;
+      margin: 10px;
+      border-radius: 15px !important;
+    }
+
+    .product-card img.product-image {
+      border-radius: 15px !important;
+    }
+
+    .product-card .product-image {
+      border-radius: 15px !important;
+    }
+
+    img.product-image {
+      border-radius: 15px !important;
     }
 
     .product-card:hover .product-image {
-      transform: scale(1.05);
+      transform: scale(1.02);
     }
 
     .product-content {
@@ -1010,23 +1122,94 @@
       .products-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
-        padding: 0;
+        padding: 0 0.5rem;
       }
 
       .product-card {
         border-radius: 15px;
+        margin: 0 0.5rem;
+        border-width: 3px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      }
+
+      .product-card:hover {
+        transform: translateY(-3px);
       }
 
       .product-image {
-        height: 200px;
+        height: 220px;
+        margin: 8px;
+        padding: 12px;
       }
 
       .product-content {
-        padding: 1rem;
+        padding: 1.2rem;
       }
 
       .product-title {
-        font-size: 1rem;
+        font-size: 1.05rem;
+        line-height: 1.3;
+        margin-bottom: 0.8rem;
+      }
+
+      .product-price {
+        margin-bottom: 1.2rem;
+      }
+
+      .price-current {
+        font-size: 1.3rem;
+      }
+
+      .product-features {
+        margin-bottom: 1.2rem;
+      }
+
+      .product-features li {
+        font-size: 0.85rem;
+        padding: 0.25rem 0;
+      }
+
+      .product-buttons {
+        gap: 0.7rem;
+      }
+
+      .btn {
+        padding: 0.9rem 1.2rem;
+        font-size: 0.85rem;
+        border-radius: 25px;
+      }
+
+      /* Faster animations on mobile */
+      .product-card.animate {
+        animation-duration: 0.3s;
+      }
+
+      .product-card.animate:nth-child(1) {
+        animation-delay: 0s;
+      }
+
+      .product-card.animate:nth-child(2) {
+        animation-delay: 0.03s;
+      }
+
+      .product-card.animate:nth-child(3) {
+        animation-delay: 0.06s;
+      }
+
+      .product-card.animate:nth-child(4) {
+        animation-delay: 0.09s;
+      }
+
+      .product-card.animate:nth-child(5) {
+        animation-delay: 0.12s;
+      }
+
+      .product-card.animate:nth-child(6) {
+        animation-delay: 0.15s;
+      }
+
+      .product-card.animate:nth-child(7) {
+        animation-delay: 0.18s;
       }
 
       /* Modal Mobile */
@@ -1118,6 +1301,79 @@
       .modal-content {
         padding: 1.5rem;
       }
+
+      /* Extra mobile optimizations for products */
+      .products-grid {
+        padding: 0 0.25rem;
+        gap: 1.2rem;
+      }
+
+      .product-card {
+        margin: 0 0.25rem;
+        border-width: 2px;
+      }
+
+      .product-image {
+        height: 200px;
+        margin: 6px;
+        padding: 10px;
+      }
+
+      .product-content {
+        padding: 1rem;
+      }
+
+      .product-title {
+        font-size: 0.95rem;
+        line-height: 1.25;
+      }
+
+      .price-current {
+        font-size: 1.2rem;
+      }
+
+      .product-features li {
+        font-size: 0.8rem;
+        padding: 0.2rem 0;
+      }
+
+      .btn {
+        padding: 0.8rem 1rem;
+        font-size: 0.8rem;
+      }
+
+      /* Even faster animations on small mobile */
+      .product-card.animate {
+        animation-duration: 0.25s;
+      }
+
+      .product-card.animate:nth-child(1) {
+        animation-delay: 0s;
+      }
+
+      .product-card.animate:nth-child(2) {
+        animation-delay: 0.02s;
+      }
+
+      .product-card.animate:nth-child(3) {
+        animation-delay: 0.04s;
+      }
+
+      .product-card.animate:nth-child(4) {
+        animation-delay: 0.06s;
+      }
+
+      .product-card.animate:nth-child(5) {
+        animation-delay: 0.08s;
+      }
+
+      .product-card.animate:nth-child(6) {
+        animation-delay: 0.1s;
+      }
+
+      .product-card.animate:nth-child(7) {
+        animation-delay: 0.12s;
+      }
     }
   </style>
 </head>
@@ -1145,20 +1401,6 @@
         <h1 class="hero-title">Transforma tus Finanzas con <span class="brand-highlight">Planifesto</span></h1>
         <p class="hero-subtitle">Herramientas diseñadas especialmente para mujeres que quieren tomar el control
           de su dinero y construir el futuro financiero que merecen 💅✨</p>
-        <div class="hero-benefits">
-          <div class="benefit-item">
-            <span class="benefit-icon">💎</span>
-            <span class="benefit-text">Diseño estético y funcional</span>
-          </div>
-          <div class="benefit-item">
-            <span class="benefit-icon">🚀</span>
-            <span class="benefit-text">Resultados desde el día 1</span>
-          </div>
-          <div class="benefit-item">
-            <span class="benefit-icon">🎯</span>
-            <span class="benefit-text">Fácil de usar</span>
-          </div>
-        </div>
         <button class="hero-cta" onclick="scrollToProducts()">Explorar Productos</button>
       </div>
       <div class="hero-visual">
@@ -1721,6 +1963,29 @@
       basic: false
     };
 
+    // Scroll Animation Observer
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Initialize scroll animations when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function () {
+      const productCards = document.querySelectorAll('.product-card');
+      productCards.forEach(card => {
+        observer.observe(card);
+      });
+    });
+
     // Product Details Modal
     function showProductDetails(productId) {
       const product = productData[productId];
@@ -1766,7 +2031,7 @@
               </span>
               <span>WhatsApp</span>
             </a>
-                          <a href="mailto:planifestoRD@gmail.com?subject=Consulta%20sobre%20${encodeURIComponent(product.title)}&body=Hola!%20Me%20interesa%20la%20${encodeURIComponent(product.title)}%20y%20quisiera%20información%20sobre%20transferencias%20bancarias." class="payment-btn email-btn">
+            <a href="mailto:planifestoRD@gmail.com?subject=Consulta%20sobre%20${encodeURIComponent(product.title)}&body=Hola!%20Me%20interesa%20la%20${encodeURIComponent(product.title)}%20y%20quisiera%20información%20sobre%20transferencias%20bancarias." class="payment-btn email-btn">
               <span class="payment-icon">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
@@ -1912,18 +2177,24 @@
       if (productCard) {
         productCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
         setTimeout(() => {
-          // Reset any existing animation
-          productCard.style.animation = 'none';
+          // Solo limpiar la propiedad animation, mantener opacity y transform base
+          productCard.style.animation = '';
+
+          // Asegurar que la tarjeta sea visible
+          productCard.style.opacity = '1';
+          productCard.style.transform = 'translateY(0)';
+
           // Force reflow
           productCard.offsetHeight;
-          // Apply the new animation
+
+          // Aplicar animación de pulso
           productCard.style.animation = 'cardPulse 0.8s ease 3';
 
-          // Remove animation after completion
+          // Limpiar solo la animación después, no el transform ni opacity
           setTimeout(() => {
             productCard.style.animation = '';
-          }, 2400); // 0.8s * 3 iterations
-        }, 800); // Wait for scroll to complete
+          }, 2400);
+        }, 800);
       }
     }
 
