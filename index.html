@@ -1189,10 +1189,10 @@
         border-radius: 25px;
       }
 
-      /* Quick and smooth animations on mobile */
+      /* Gentle animations on mobile */
       .product-card.animate {
-        animation-duration: 0.25s;
-        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        animation-duration: 0.4s;
+        animation-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
       }
 
       .product-card.animate:nth-child(1) {
@@ -1200,27 +1200,27 @@
       }
 
       .product-card.animate:nth-child(2) {
-        animation-delay: 0.01s;
-      }
-
-      .product-card.animate:nth-child(3) {
-        animation-delay: 0.02s;
-      }
-
-      .product-card.animate:nth-child(4) {
-        animation-delay: 0.03s;
-      }
-
-      .product-card.animate:nth-child(5) {
-        animation-delay: 0.04s;
-      }
-
-      .product-card.animate:nth-child(6) {
         animation-delay: 0.05s;
       }
 
+      .product-card.animate:nth-child(3) {
+        animation-delay: 0.1s;
+      }
+
+      .product-card.animate:nth-child(4) {
+        animation-delay: 0.15s;
+      }
+
+      .product-card.animate:nth-child(5) {
+        animation-delay: 0.2s;
+      }
+
+      .product-card.animate:nth-child(6) {
+        animation-delay: 0.25s;
+      }
+
       .product-card.animate:nth-child(7) {
-        animation-delay: 0.06s;
+        animation-delay: 0.3s;
       }
 
       /* Modal Mobile */
@@ -1353,12 +1353,12 @@
         font-size: 0.8rem;
       }
 
-      /* Mobile-specific softer animations */
+      /* Mobile-specific gentle animations */
       @media (max-width: 480px) {
         @keyframes fadeInUpMobile {
           from {
             opacity: 0;
-            transform: translateY(15px);
+            transform: translateY(20px);
           }
 
           to {
@@ -1370,7 +1370,7 @@
         @keyframes slideInFromLeftMobile {
           from {
             opacity: 0;
-            transform: translateX(-15px);
+            transform: translateX(-20px);
           }
 
           to {
@@ -1382,7 +1382,7 @@
         @keyframes slideInFromRightMobile {
           from {
             opacity: 0;
-            transform: translateX(15px);
+            transform: translateX(20px);
           }
 
           to {
@@ -1394,7 +1394,7 @@
         @keyframes scaleInMobile {
           from {
             opacity: 0;
-            transform: scale(0.97);
+            transform: scale(0.96);
           }
 
           to {
@@ -1404,8 +1404,8 @@
         }
 
         .product-card.animate {
-          animation-duration: 0.2s;
-          animation-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+          animation-duration: 0.5s;
+          animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .product-card.animate:nth-child(1) {
@@ -1415,32 +1415,32 @@
 
         .product-card.animate:nth-child(2) {
           animation-name: slideInFromLeftMobile;
-          animation-delay: 0.01s;
+          animation-delay: 0.08s;
         }
 
         .product-card.animate:nth-child(3) {
           animation-name: slideInFromRightMobile;
-          animation-delay: 0.02s;
+          animation-delay: 0.16s;
         }
 
         .product-card.animate:nth-child(4) {
           animation-name: scaleInMobile;
-          animation-delay: 0.03s;
+          animation-delay: 0.24s;
         }
 
         .product-card.animate:nth-child(5) {
           animation-name: fadeInUpMobile;
-          animation-delay: 0.04s;
+          animation-delay: 0.32s;
         }
 
         .product-card.animate:nth-child(6) {
           animation-name: slideInFromLeftMobile;
-          animation-delay: 0.05s;
+          animation-delay: 0.4s;
         }
 
         .product-card.animate:nth-child(7) {
           animation-name: slideInFromRightMobile;
-          animation-delay: 0.06s;
+          animation-delay: 0.48s;
         }
       }
     }
