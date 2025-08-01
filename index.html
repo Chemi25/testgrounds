@@ -350,11 +350,11 @@
       }
     }
 
-    /* Scroll animations for products - Mobile optimized */
+    /* Scroll animations for products */
     @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(40px);
       }
 
       to {
@@ -366,7 +366,7 @@
     @keyframes slideInFromLeft {
       from {
         opacity: 0;
-        transform: translateX(-20px);
+        transform: translateX(-40px);
       }
 
       to {
@@ -378,7 +378,7 @@
     @keyframes slideInFromRight {
       from {
         opacity: 0;
-        transform: translateX(20px);
+        transform: translateX(40px);
       }
 
       to {
@@ -390,7 +390,7 @@
     @keyframes scaleIn {
       from {
         opacity: 0;
-        transform: scale(0.95);
+        transform: scale(0.9);
       }
 
       to {
@@ -411,6 +411,16 @@
         transform: scale(1.05);
         box-shadow: var(--sombra-hover);
       }
+    }
+
+    /* Prevent scroll animations on quiz-processed cards */
+    .product-card.no-scroll-animate {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    .product-card.no-scroll-animate.animate {
+      animation: none !important;
     }
 
     /* Quiz Section */
@@ -491,9 +501,9 @@
     }
 
     .product-card.animate {
-      animation-duration: 0.6s;
+      animation-duration: 0.3s;
       animation-fill-mode: both;
-      animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+      animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .product-card.animate:nth-child(1) {
@@ -503,32 +513,32 @@
 
     .product-card.animate:nth-child(2) {
       animation-name: slideInFromLeft;
-      animation-delay: 0.08s;
+      animation-delay: 0.02s;
     }
 
     .product-card.animate:nth-child(3) {
       animation-name: slideInFromRight;
-      animation-delay: 0.16s;
+      animation-delay: 0.04s;
     }
 
     .product-card.animate:nth-child(4) {
       animation-name: scaleIn;
-      animation-delay: 0.24s;
+      animation-delay: 0.06s;
     }
 
     .product-card.animate:nth-child(5) {
       animation-name: fadeInUp;
-      animation-delay: 0.32s;
+      animation-delay: 0.08s;
     }
 
     .product-card.animate:nth-child(6) {
       animation-name: slideInFromLeft;
-      animation-delay: 0.4s;
+      animation-delay: 0.1s;
     }
 
     .product-card.animate:nth-child(7) {
       animation-name: slideInFromRight;
-      animation-delay: 0.48s;
+      animation-delay: 0.12s;
     }
 
     .product-card:hover {
@@ -1179,10 +1189,10 @@
         border-radius: 25px;
       }
 
-      /* Smoother animations on mobile */
+      /* Quick and smooth animations on mobile */
       .product-card.animate {
-        animation-duration: 0.5s;
-        animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+        animation-duration: 0.25s;
+        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       .product-card.animate:nth-child(1) {
@@ -1190,27 +1200,27 @@
       }
 
       .product-card.animate:nth-child(2) {
-        animation-delay: 0.1s;
+        animation-delay: 0.01s;
       }
 
       .product-card.animate:nth-child(3) {
-        animation-delay: 0.2s;
+        animation-delay: 0.02s;
       }
 
       .product-card.animate:nth-child(4) {
-        animation-delay: 0.3s;
+        animation-delay: 0.03s;
       }
 
       .product-card.animate:nth-child(5) {
-        animation-delay: 0.4s;
+        animation-delay: 0.04s;
       }
 
       .product-card.animate:nth-child(6) {
-        animation-delay: 0.5s;
+        animation-delay: 0.05s;
       }
 
       .product-card.animate:nth-child(7) {
-        animation-delay: 0.6s;
+        animation-delay: 0.06s;
       }
 
       /* Modal Mobile */
@@ -1343,38 +1353,95 @@
         font-size: 0.8rem;
       }
 
-      /* Gentle animations on small mobile */
-      .product-card.animate {
-        animation-duration: 0.4s;
-        animation-timing-function: ease-out;
-      }
+      /* Mobile-specific softer animations */
+      @media (max-width: 480px) {
+        @keyframes fadeInUpMobile {
+          from {
+            opacity: 0;
+            transform: translateY(15px);
+          }
 
-      .product-card.animate:nth-child(1) {
-        animation-delay: 0s;
-      }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
 
-      .product-card.animate:nth-child(2) {
-        animation-delay: 0.08s;
-      }
+        @keyframes slideInFromLeftMobile {
+          from {
+            opacity: 0;
+            transform: translateX(-15px);
+          }
 
-      .product-card.animate:nth-child(3) {
-        animation-delay: 0.16s;
-      }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
 
-      .product-card.animate:nth-child(4) {
-        animation-delay: 0.24s;
-      }
+        @keyframes slideInFromRightMobile {
+          from {
+            opacity: 0;
+            transform: translateX(15px);
+          }
 
-      .product-card.animate:nth-child(5) {
-        animation-delay: 0.32s;
-      }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
 
-      .product-card.animate:nth-child(6) {
-        animation-delay: 0.4s;
-      }
+        @keyframes scaleInMobile {
+          from {
+            opacity: 0;
+            transform: scale(0.97);
+          }
 
-      .product-card.animate:nth-child(7) {
-        animation-delay: 0.48s;
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        .product-card.animate {
+          animation-duration: 0.2s;
+          animation-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .product-card.animate:nth-child(1) {
+          animation-name: fadeInUpMobile;
+          animation-delay: 0s;
+        }
+
+        .product-card.animate:nth-child(2) {
+          animation-name: slideInFromLeftMobile;
+          animation-delay: 0.01s;
+        }
+
+        .product-card.animate:nth-child(3) {
+          animation-name: slideInFromRightMobile;
+          animation-delay: 0.02s;
+        }
+
+        .product-card.animate:nth-child(4) {
+          animation-name: scaleInMobile;
+          animation-delay: 0.03s;
+        }
+
+        .product-card.animate:nth-child(5) {
+          animation-name: fadeInUpMobile;
+          animation-delay: 0.04s;
+        }
+
+        .product-card.animate:nth-child(6) {
+          animation-name: slideInFromLeftMobile;
+          animation-delay: 0.05s;
+        }
+
+        .product-card.animate:nth-child(7) {
+          animation-name: slideInFromRightMobile;
+          animation-delay: 0.06s;
+        }
       }
     }
   </style>
@@ -1965,15 +2032,19 @@
       basic: false
     };
 
-    // Scroll Animation Observer with better mobile detection
+    // Scroll Animation Observer - More responsive
     const observerOptions = {
-      threshold: 0.05,
-      rootMargin: '0px 0px -20px 0px'
+      threshold: 0.05, // Trigger earlier
+      rootMargin: '50px 0px -20px 0px' // Start animations before fully visible
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        // No animar si ya fue procesado por el quiz o ya tiene la clase animate
+        if (entry.isIntersecting &&
+          !entry.target.classList.contains('animate') &&
+          !entry.target.hasAttribute('data-quiz-processed') &&
+          !entry.target.classList.contains('no-scroll-animate')) {
           entry.target.classList.add('animate');
           observer.unobserve(entry.target);
         }
@@ -2177,24 +2248,29 @@
       toggleQuizPopup();
       const productCard = document.querySelector(`[data-product="${productId}"]`);
       if (productCard) {
+        // Marcar como ya procesado para evitar re-animaciones
+        productCard.setAttribute('data-quiz-processed', 'true');
+
         productCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
         setTimeout(() => {
-          // Solo limpiar la propiedad animation, mantener opacity y transform base
-          productCard.style.animation = '';
-
-          // Asegurar que la tarjeta sea visible
+          // Forzar estado final visible y remover todas las animaciones CSS
           productCard.style.opacity = '1';
           productCard.style.transform = 'translateY(0)';
+          productCard.style.animation = 'none';
 
           // Force reflow
           productCard.offsetHeight;
 
-          // Aplicar animación de pulso
+          // Aplicar solo el pulso
           productCard.style.animation = 'cardPulse 0.8s ease 3';
 
-          // Limpiar solo la animación después, no el transform ni opacity
+          // Después del pulso, mantener estado final y bloquear futuras animaciones
           setTimeout(() => {
-            productCard.style.animation = '';
+            productCard.style.animation = 'none';
+            productCard.style.opacity = '1';
+            productCard.style.transform = 'translateY(0)';
+            // Agregar clase para prevenir futuras animaciones
+            productCard.classList.add('no-scroll-animate');
           }, 2400);
         }, 800);
       }
