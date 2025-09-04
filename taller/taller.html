@@ -1145,7 +1145,78 @@
             outline: 2px solid #f7a9a8;
             outline-offset: 2px;
         }
+
+        /* Styling opiniones*/
+        /* Contenedor */
+        .slider {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding: 10px 0;
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+        }
+
+        /* Pista */
+        .slider-track {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            /* centra verticalmente cada imagen */
+            will-change: transform;
+        }
+
+        /* IMÁGENES: mostrar completas en formato horizontal */
+        .slider-track img {
+            height: 200px;
+            /* altura fija para móvil */
+            width: auto;
+            /* conserva proporción */
+            object-fit: contain;
+            /* NO recorta, muestra todo */
+            background: #f7f7f7;
+            /* “lienzo” si la imagen no llena alto/alto */
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+            flex: 0 0 auto;
+            /* no se estiran */
+        }
+
+        /* Ajustes responsivos */
+        @media (min-width: 480px) {
+            .slider-track img {
+                height: 220px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .slider-track img {
+                height: 260px;
+            }
+        }
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const track = document.querySelector(".slider-track");
+            const speed = 0.5; // píxeles por frame (ajusta velocidad)
+
+            // Duplicamos las imágenes para hacer loop infinito
+            track.innerHTML += track.innerHTML;
+
+            let pos = 0;
+            function animate() {
+                pos -= speed;
+                if (Math.abs(pos) >= track.scrollWidth / 2) {
+                    pos = 0; // reinicia cuando llega a la mitad
+                }
+                track.style.transform = `translateX(${pos}px)`;
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        });
+    </script>
+
 </head>
 
 <body>
@@ -1166,10 +1237,11 @@
         <div class="hero-section">
             <div class="hero-background"></div>
             <div class="hero-content content-section">
-                <h1>💥 21 DÍAS PARA DEJAR DE SER UN CAOS FINANCIERO</h1>
+                <h1>💥 15 DÍAS PARA DEJAR DE SER UN CAOS FINANCIERO</h1>
                 <p class="subtitle">— sin dejar de darte gustos, ni volverte contable —</p>
                 <div class="highlight">
-                    <p>✨ Un taller creativo, práctico y aplatanao para aprender a manejar tu dinero con conciencia y sin
+                    <p>✨ Un taller creativo, práctico y aplatana'o para aprender a manejar tu dinero con conciencia y
+                        sin
                         culpa y a recuperar el control sobre tu dinero</p>
                 </div>
 
@@ -1184,12 +1256,10 @@
             <h2>✅ ¿Pa' quién e' je'to?</h2>
             <p><strong>Este taller es para ti si...</strong></p>
             <ul>
-                <li>💸 Ganas bien, pero no sabes pa' dónde se van lo' chelitos.</li>
+                <li>💸 Ganas bien, pero no sabes pa’ dónde se van lo’ chelitos y sientes que necesitas organizarte</li>
                 <li>😵‍💫 Te da ansiedad cada vez que gastas... pero tampoco quieres vivir contando cada peso.</li>
                 <li>💡 Quieres aprender a sacarle mayor provecho a tus ahorros y preparar tu zapata para el/la futura tú
                     que será rico/a (amén)</li>
-                <li>🤑 Sueñas con invertir, pero cada vez que oyes "bono", "índice" o "perfil de riesgo" te da un micro
-                    infarto (graciasss)</li>
                 <li>👀 Quieres una guía que hable CLARO, sin juicio, sin tecnicismos, y que te diga paso por paso qué
                     hacer.</li>
                 <li>✨ Estás lista para cambiar tu relación con el dinero, rainao.</li>
@@ -1215,16 +1285,21 @@
         <div class="content-section">
             <h2>📦 ¿Qué incluye?</h2>
             <ul>
-                <li>🎯 21 días de contenido práctico y digerible: PDFs ✍🏽 | audios 🎧 | mini videos 🎥 | retos diarios
+                <li>🎯 14 días de contenido práctico y digerible: PDFs ✍🏽 | audios 🎧 | mini videos 🎥 | retos diarios
                     🧩 | dinámicas 🕺🏽</li>
-                <li>4 clases en vivo (1 por semana más 1 extra muy especial) con ejercicios aplicados en donde no solo
-                    hablaremos el pi a pa del manejo y control del money y las inversiones, sino también de la
-                    psicología del dinero y cómo preparar tu mente para que esté receptiva al cambio</li>
+                <li>3 clases en vivo (1 cada viernes a las 7:00pm) con ejercicios aplicados</li>
                 <li>Acompañamiento directo de Liss y María en grupo VIP de WhatsApp, con la mejor comunidad del mundo:
                     llena de personas que comparten tus mismos objetivos!</li>
                 <li>👯‍♀️ Comunidad 10/10: divertida, honesta, con las mismas ganas que tú de poner sus finanzas en
                     orden.</li>
             </ul>
+            <p>Y como dijo nuestra querida Ishu de la primera edición del taller: “No saben lo lindo que se siente esta
+                comunidad.
+                Todos preparándonos para alcanzar nuestras metas. No me canso de decir que este taller tiene muchísimo
+                valor. Te lleva
+                de cero a experto”</p>
+            <p>O como dijo nuestra querida Aure: “Gracias a la tribu Planifesto” hehehe</p>
+
         </div>
 
         <div class="content-section">
@@ -1232,51 +1307,70 @@
             <ul>
                 <li>Plantilla <strong>Planifesto Pro</strong> (valorada en $25 USD)</li>
                 <li>Guía de Inversiones 2.0 (valorada en $11.99 USD)</li>
-                <li>Planificador de actividades personalizado</li>
                 <li>Acceso a todos los materiales por 1 año</li>
             </ul>
         </div>
 
         <div class="content-section">
+            <h2>✨LO QUE OPINAN NUESTRAS ALUMNAS :3✨</h2>
+
+            <div class="slider">
+                <div class="slider-track">
+                    <img src="images/feedback 1.jpeg" alt="Opinión 1">
+                    <img src="images/feedback 2.jpeg" alt="Opinión 2">
+                    <img src="images/feedback 3.jpeg" alt="Opinión 3">
+                    <img src="images/feedback 4.jpeg" alt="Opinión 4">
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
             <h2>🕒 ¿Cuándo empieza?</h2>
             <ul>
-                <li>📅 Fecha de inicio: <strong>Viernes 8 de Agosto</strong></li>
-                <li>📅 Fecha de término: <strong>Viernes 29 de Agosto</strong></li>
-                <li>📲 Todo el contenido e información te llegará por WhatsApp, así que puedes hacerlo desde cualquier
+                <li>📅 Fecha de inicio: <strong>Viernes 26 de septiembre</strong></li>
+                <li>📅 Fecha de término: <strong>Viernes 10 de octubre</strong></li>
+                <li>📲 Todo el contenido e información te llegará por WhatsApp, así que puedes hacerlo desde
+                    cualquier
                     lugar y las clases serán grabadas (tendrás acceso a ellas durante 1 año).</li>
             </ul>
 
             <div class="highlight" style="margin-top: 30px;">
                 <h3>🚪 Cupo limitado</h3>
                 <p>Los cupos son MUY limitados porque queremos ofrecer la mayor atención posible y esto solo podemos
-                    hacerlo con un grupo controlado, así que una vez se llene el grupo, cerramos inscripciones, sin
-                    excepciones :(</p>
+                    hacerlo con un grupo
+                    controlado, así que una vez se llene el grupo, cerramos inscripciones.</p>
             </div>
         </div>
 
         <div class="content-section">
             <h2>💸 Inversión</h2>
-            <p>La idea de este taller surgió por la necesidad de una guía clara, práctica y sencilla de la comunidad tan
-                chula que hemos construido en el último año. Sé lo confuso y solitario que puede ser "aprender de
-                dinero" sin guía ni apoyo, y por eso quise hacerlo <strong>accesible, pero valioso a otro nivel</strong>
-            </p>
-
-            <p>Todo el mundo me dijo que esto debería costar <strong>al menos $400 USD</strong>, pero yo decidí que el
-                precio fuera de <strong>$150 USD</strong> para hacerlo accesible pero valioso a otro nivel.</p>
-
             <div class="price-section">
-                <p class="discount-price">$150 USD</p>
+                <p class="original-price">$97 USD</p>
+                <p class="discount-price">$74.99<br> (Early Bird)</p>
+
+                <p style="margin-top:8px; opacity:0.9;">Early bird con <strong>22% de descuento</strong> por las
+                    primeras 24
+                    horas.</p>
             </div>
-
-            <p style="text-align: center; font-size: 1.2em; font-weight: bold; margin: 30px 0;">¿Tú sabes lo que tú
-                puedes hacer con 21 días y una guía clara? Cambiar tu historia financiera pa' siempre💥</p>
-
+            <div class="highlight" style="margin-top: 30px;">
+                <p>La idea de este taller surgió por la necesidad de una guía clara, práctica y sencilla de la
+                    comunidad
+                    tan
+                    chula que hemos construido en el último año. Sé lo confuso y solitario que puede ser “aprender
+                    de
+                    dinero”
+                    sin guía ni apoyo, y por eso quisimos hacerlo accesible, pero valioso a otro nivel</p>
+            </div>
+            <p style="text-align: center; font-size: 1.2em; font-weight: bold; margin: 20px 0;">¿Tú sabes lo que tú
+                puedes hacer
+                con 15 días y una guía clara? Cambiar tu historia financiera pa' siempre💥</p>
             <p style="text-align: center; font-size: 1.1em;">Nos vemos adentro – <em>Liss & María</em> 💛</p>
         </div>
 
         <div style="text-align: center; margin: 40px 0;" id="inscription-section">
-            <a href="https://www.paypal.com/ncp/payment/9WL5T89WZVPCG" class="cta-button">¡INSCRÍBETE AHORA!</a>
-            <button class="cta-button terms-button" onclick="openModal()">Términos y Condiciones</button>
+            <a href="https://www.paypal.com/ncp/payment/SGDCUUSWBJNZJ" target="_blank" class="cta-button">¡Inscribirme
+                ahora!</a>
+            <button class="cta-button" onclick="openModal()">Ver Términos y Condiciones</button>
         </div>
 
         <!-- Nueva sección de pago por transferencia -->
