@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planifesto - 15 Días para Dejar de Ser un Caos Financiero</title>
     <style>
+        html,
+        body {
+            touch-action: manipulation;
+            /* evita double tap zoom */
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -2066,7 +2072,7 @@
                 }
 
                 // Configuración de tiempos
-                const AUTO_SCROLL_DELAY = 3000; // 3 segundos para cambiar
+                const AUTO_SCROLL_DELAY = 10000; // 10 segundos para cambiar
                 const INACTIVITY_DELAY = 1000;  // 1 segundo de espera antes de auto-scroll
 
                 let autoScrollInterval = null;
