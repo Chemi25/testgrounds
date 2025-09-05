@@ -1390,19 +1390,23 @@
             .opinions-nav-btn {
                 width: 35px;
                 height: 35px;
+
             }
 
             .opinions-nav-btn.op-prev {
                 left: 10px;
+
             }
 
             .opinions-nav-btn.op-next {
                 right: 10px;
+
             }
 
             .opinions-nav-btn svg {
                 width: 18px;
                 height: 18px;
+
             }
 
             .opinions-image-counter {
@@ -1426,6 +1430,56 @@
             .opinions-nav-btn svg {
                 width: 22px;
                 height: 22px;
+            }
+        }
+
+        /* ==== GUTTERS LATERALES PARA QUE LOS BOTONES NO TAPEN LA IMAGEN ==== */
+        .opinions-carousel-container {
+            /* crea un espacio lateral donde vivirán los botones */
+            --op-gutter: 56px;
+            /* escritorio */
+            padding: 0 var(--op-gutter);
+        }
+
+        /* el wrapper debe seguir ocupando todo el alto disponible */
+        .opinions-carousel-wrapper {
+            height: 100%;
+        }
+
+        /* coloca los botones dentro del gutter, no encima de la imagen */
+        .opinions-nav-btn.op-prev {
+            left: 12px;
+            /* dentro del gutter izquierdo */
+        }
+
+        .opinions-nav-btn.op-next {
+            right: 12px;
+            /* dentro del gutter derecho */
+        }
+
+        /* Ajustes responsivos: reduce el gutter en pantallas pequeñas */
+        @media (max-width: 640px) {
+            .opinions-carousel-container {
+                --op-gutter: 38px;
+                /* móvil */
+                padding: 0 var(--op-gutter);
+            }
+
+            .opinions-nav-btn.op-prev {
+                left: 8px;
+            }
+
+            .opinions-nav-btn.op-next {
+                right: 8px;
+            }
+        }
+
+        /* En pantallas muy grandes, un poco más de gutter opcional */
+        @media (min-width: 1200px) {
+            .opinions-carousel-container {
+                --op-gutter: 64px;
+                /* desktop grande */
+                padding: 0 var(--op-gutter);
             }
         }
     </style>
