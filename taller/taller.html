@@ -1147,75 +1147,289 @@
         }
 
         /* Styling opiniones*/
-        /* Contenedor */
-        .slider {
-            position: relative;
-            overflow: hidden;
+        .opinions-carousel-section * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .opinions-carousel-section {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             width: 100%;
-            padding: 10px 0;
-            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-            mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+            max-width: 800px;
+            /* Aumentado de 500px a 800px */
+            margin: 0 auto;
+            padding: 30px 20px;
         }
 
-        /* Pista */
-        .slider-track {
+        .opinions-carousel-section h2 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .opinions-carousel-container {
+            position: relative;
+            width: 100%;
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            /* Cambiado de 1 (cuadrado) a 16/9 (rectangular ancho) */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Alternativa: si prefieres un carrusel más cuadrado pero más grande */
+        /* Comenta la línea de arriba y descomenta esta: */
+        /* aspect-ratio: 4/3; */
+
+        .opinions-carousel-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .opinions-carousel-track {
             display: flex;
-            gap: 14px;
+            height: 100%;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .opinions-carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
             align-items: center;
-            /* centra verticalmente cada imagen */
-            will-change: transform;
+            justify-content: center;
+            background: #f0f0f0;
         }
 
-        /* IMÁGENES: mostrar completas en formato horizontal */
-        .slider-track img {
-            height: 200px;
-            /* altura fija para móvil */
-            width: auto;
-            /* conserva proporción */
+        .opinions-carousel-slide img {
+            width: 100%;
+            height: 100%;
             object-fit: contain;
-            /* NO recorta, muestra todo */
-            background: #f7f7f7;
-            /* “lienzo” si la imagen no llena alto/alto */
-            border-radius: 16px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
-            flex: 0 0 auto;
-            /* no se estiran */
+            /* Cambiado de 'cover' a 'contain' para mostrar la imagen completa */
+            background: #fff;
+            /* Fondo negro para las barras laterales si la imagen no llena todo */
         }
 
-        /* Ajustes responsivos */
-        @media (min-width: 480px) {
-            .slider-track img {
-                height: 220px;
+        /* Si prefieres que las imágenes llenen todo el espacio (puede recortar partes): */
+        /* .opinions-carousel-slide img {
+    object-fit: cover;
+} */
+
+        /* Botones de navegación */
+        .opinions-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 40px;
+            /* Aumentado ligeramente */
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .opinions-nav-btn:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .opinions-nav-btn:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .opinions-nav-btn.op-prev {
+            left: 15px;
+        }
+
+        .opinions-nav-btn.op-next {
+            right: 15px;
+        }
+
+        .opinions-nav-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: #333;
+            stroke-width: 3;
+            fill: none;
+        }
+
+        /* Indicadores */
+        .opinions-indicators {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 10;
+            padding: 8px 12px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .opinions-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            padding: 0;
+        }
+
+        .opinions-indicator.op-active {
+            background: white;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* Contador estilo Instagram */
+        .opinions-image-counter {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 15px;
+            font-size: 13px;
+            font-weight: 500;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Barra de progreso para auto-scroll */
+        .opinions-progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.2);
+            z-index: 11;
+        }
+
+        .opinions-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0;
+        }
+
+        @keyframes opinionsFillProgress {
+            from {
+                width: 0%;
+            }
+
+            to {
+                width: 100%;
             }
         }
 
-        @media (min-width: 768px) {
-            .slider-track img {
-                height: 260px;
+        /* Animación de entrada */
+        @keyframes opinionsSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .opinions-carousel-slide.op-slide-active {
+            animation: opinionsSlideIn 0.5s ease;
+        }
+
+        /* Responsive para tablets */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .opinions-carousel-section {
+                max-width: 700px;
+            }
+
+            .opinions-carousel-container {
+                aspect-ratio: 16/10;
+                /* Un poco más alto en tablets */
+            }
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 640px) {
+            .opinions-carousel-section {
+                padding: 20px 15px;
+                max-width: 100%;
+                /* Ancho completo en móvil */
+            }
+
+            .opinions-carousel-section h2 {
+                font-size: 1.3rem;
+            }
+
+            .opinions-carousel-container {
+                aspect-ratio: 4/3;
+                /* Más cuadrado en móvil para mejor visualización */
+                border-radius: 10px;
+            }
+
+            .opinions-nav-btn {
+                width: 35px;
+                height: 35px;
+            }
+
+            .opinions-nav-btn.op-prev {
+                left: 10px;
+            }
+
+            .opinions-nav-btn.op-next {
+                right: 10px;
+            }
+
+            .opinions-nav-btn svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .opinions-image-counter {
+                font-size: 12px;
+                padding: 5px 12px;
+            }
+        }
+
+        /* Para pantallas muy grandes */
+        @media (min-width: 1200px) {
+            .opinions-carousel-section {
+                max-width: 900px;
+                /* Aún más grande en pantallas grandes */
+            }
+
+            .opinions-nav-btn {
+                width: 45px;
+                height: 45px;
+            }
+
+            .opinions-nav-btn svg {
+                width: 22px;
+                height: 22px;
             }
         }
     </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const track = document.querySelector(".slider-track");
-            const speed = 0.5; // píxeles por frame (ajusta velocidad)
-
-            // Duplicamos las imágenes para hacer loop infinito
-            track.innerHTML += track.innerHTML;
-
-            let pos = 0;
-            function animate() {
-                pos -= speed;
-                if (Math.abs(pos) >= track.scrollWidth / 2) {
-                    pos = 0; // reinicia cuando llega a la mitad
-                }
-                track.style.transform = `translateX(${pos}px)`;
-                requestAnimationFrame(animate);
-            }
-
-            animate();
-        });
-    </script>
+    </style>
 
 </head>
 
@@ -1310,21 +1524,61 @@
                 <li>Acceso a todos los materiales por 1 año</li>
             </ul>
         </div>
-
         <div class="content-section">
-            <h2>✨LO QUE OPINAN NUESTRAS ALUMNAS :3✨</h2>
+            <div class="opinions-carousel-section">
+                <h2>✨LO QUE OPINAN NUESTRAS ALUMNAS :3✨</h2>
 
-            <div class="slider">
-                <div class="slider-track">
-                    <img src="images/feedback 1.jpeg" alt="Opinión 1">
-                    <img src="images/feedback 2.jpeg" alt="Opinión 2">
-                    <img src="images/feedback 3.jpeg" alt="Opinión 3">
-                    <img src="images/feedback 4.jpeg" alt="Opinión 5">
-                    <img src="images/feedback 5.jpeg" alt="Opinión 4">
-                    <img src="images/feedback 6.jpeg" alt="Opinión 4">
-                    <img src="images/feedback 7.jpeg" alt="Opinión 4">
-                    <img src="images/feedback 8.jpeg" alt="Opinión 4">
+                <div class="opinions-carousel-container">
+                    <div class="opinions-progress-bar">
+                        <div class="opinions-progress-fill" id="opinionsProgressFill"></div>
+                    </div>
 
+                    <div class="opinions-image-counter">
+                        <span id="opinionsCurrentSlide">1</span> / <span id="opinionsTotalSlides">8</span>
+                    </div>
+
+                    <div class="opinions-carousel-wrapper">
+                        <div class="opinions-carousel-track" id="opinionsCarouselTrack">
+                            <div class="opinions-carousel-slide op-slide-active">
+                                <img src="images/feedback 1.jpeg" alt="Opinión 1">
+                            </div>
+                            <div class="opinions-carousel-slide">
+                                <img src="images/feedback 2.jpeg" alt="Opinión 2">
+                            </div>
+                            <div class="opinions-carousel-slide">
+                                <img src="images/feedback 3.jpeg" alt="Opinión 3">
+                            </div>
+                            <div class="opinions-carousel-slide">
+                                <img src="images/feedback 4.jpeg" alt="Opinión 4">
+                            </div>
+                            <div class="opinions-carousel-slide">
+                                <img src="images/feedback 5.jpeg" alt="Opinión 5">
+                            </div>
+                            <div class="opinions-carousel-slide">
+                                <img src="images/feedback 6.jpeg" alt="Opinión 6">
+                            </div>
+                            <div class="opinions-carousel-slide">
+                                <img src="images/feedback 7.jpeg" alt="Opinión 7">
+                            </div>
+                            <div class="opinions-carousel-slide">
+                                <img src="images/feedback 8.jpeg" alt="Opinión 8">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="opinions-nav-btn op-prev" id="opinionsPrevBtn">
+                        <svg viewBox="0 0 24 24">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+
+                    <button class="opinions-nav-btn op-next" id="opinionsNextBtn">
+                        <svg viewBox="0 0 24 24">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+
+                    <div class="opinions-indicators" id="opinionsIndicators"></div>
                 </div>
             </div>
         </div>
@@ -1729,6 +1983,216 @@
                 });
             });
         }
+    </script>
+    <!-- REEMPLAZA el script existente del carrusel con este código -->
+    <!-- Coloca este script JUSTO ANTES de </body> -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Encapsulamos todo el código del carrusel
+            (function () {
+                // Variables locales del carrusel
+                let currentIndex = 0;
+                const slides = document.querySelectorAll('.opinions-carousel-slide');
+                const totalSlides = slides.length;
+                const track = document.getElementById('opinionsCarouselTrack');
+                const currentSlideEl = document.getElementById('opinionsCurrentSlide');
+                const totalSlidesEl = document.getElementById('opinionsTotalSlides');
+                const indicatorsContainer = document.getElementById('opinionsIndicators');
+                const progressFill = document.getElementById('opinionsProgressFill');
+                const prevBtn = document.getElementById('opinionsPrevBtn');
+                const nextBtn = document.getElementById('opinionsNextBtn');
+                const carousel = document.querySelector('.opinions-carousel-wrapper');
+
+                // Verificar que todos los elementos existan
+                if (!track || !currentSlideEl || !totalSlidesEl || !indicatorsContainer ||
+                    !progressFill || !prevBtn || !nextBtn || !carousel || totalSlides === 0) {
+                    console.error('Error: No se encontraron todos los elementos del carrusel');
+                    return;
+                }
+
+                // Configuración de tiempos
+                const AUTO_SCROLL_DELAY = 3000; // 3 segundos para cambiar
+                const INACTIVITY_DELAY = 1000;  // 1 segundo de espera antes de auto-scroll
+
+                let autoScrollInterval = null;
+                let inactivityTimer = null;
+
+                // Inicializar contador total
+                totalSlidesEl.textContent = totalSlides;
+
+                // Crear indicadores
+                function createIndicators() {
+                    // Limpiar indicadores existentes
+                    indicatorsContainer.innerHTML = '';
+
+                    for (let i = 0; i < totalSlides; i++) {
+                        const indicator = document.createElement('button');
+                        indicator.className = 'opinions-indicator';
+                        indicator.setAttribute('aria-label', `Ir a imagen ${i + 1}`);
+                        if (i === 0) indicator.classList.add('op-active');
+
+                        // Usar closure para capturar el índice correcto
+                        (function (index) {
+                            indicator.addEventListener('click', function () {
+                                goToSlide(index);
+                            });
+                        })(i);
+
+                        indicatorsContainer.appendChild(indicator);
+                    }
+                }
+
+                // Actualizar indicadores
+                function updateIndicators() {
+                    const indicators = document.querySelectorAll('.opinions-indicator');
+                    indicators.forEach((indicator, index) => {
+                        if (index === currentIndex) {
+                            indicator.classList.add('op-active');
+                        } else {
+                            indicator.classList.remove('op-active');
+                        }
+                    });
+                }
+
+                // Ir a una diapositiva específica
+                function goToSlide(index) {
+                    currentIndex = index;
+                    updateSlider();
+                    resetAutoScroll();
+                }
+
+                // Actualizar el slider
+                function updateSlider() {
+                    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                    currentSlideEl.textContent = currentIndex + 1;
+                    updateIndicators();
+
+                    // Actualizar clase active para animación
+                    slides.forEach((slide, index) => {
+                        if (index === currentIndex) {
+                            slide.classList.add('op-slide-active');
+                        } else {
+                            slide.classList.remove('op-slide-active');
+                        }
+                    });
+                }
+
+                // Siguiente diapositiva
+                function nextSlide() {
+                    currentIndex = (currentIndex + 1) % totalSlides;
+                    updateSlider();
+                    resetAutoScroll();
+                }
+
+                // Diapositiva anterior
+                function prevSlide() {
+                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                    updateSlider();
+                    resetAutoScroll();
+                }
+
+                // Iniciar auto-scroll
+                function startAutoScroll() {
+                    // Limpiar cualquier intervalo anterior
+                    stopAutoScroll();
+
+                    // Iniciar la animación de la barra
+                    progressFill.style.animation = 'none';
+                    void progressFill.offsetHeight; // Trigger reflow
+                    progressFill.style.animation = `opinionsFillProgress ${AUTO_SCROLL_DELAY}ms linear forwards`;
+
+                    // Configurar el cambio de slide
+                    autoScrollInterval = setTimeout(function () {
+                        nextSlide();
+                        startAutoScroll(); // Continuar el ciclo
+                    }, AUTO_SCROLL_DELAY);
+                }
+
+                // Detener auto-scroll
+                function stopAutoScroll() {
+                    if (autoScrollInterval) {
+                        clearTimeout(autoScrollInterval);
+                        autoScrollInterval = null;
+                    }
+                    if (inactivityTimer) {
+                        clearTimeout(inactivityTimer);
+                        inactivityTimer = null;
+                    }
+                    progressFill.style.animation = 'none';
+                    progressFill.style.width = '0%';
+                }
+
+                // Resetear auto-scroll después de interacción
+                function resetAutoScroll() {
+                    stopAutoScroll();
+
+                    // Esperar antes de iniciar auto-scroll
+                    inactivityTimer = setTimeout(function () {
+                        startAutoScroll();
+                    }, INACTIVITY_DELAY);
+                }
+
+                // Eventos táctiles para móvil
+                let touchStartX = 0;
+                let touchEndX = 0;
+
+                carousel.addEventListener('touchstart', function (e) {
+                    touchStartX = e.changedTouches[0].screenX;
+                    resetAutoScroll();
+                }, { passive: true });
+
+                carousel.addEventListener('touchend', function (e) {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                }, { passive: true });
+
+                function handleSwipe() {
+                    const swipeThreshold = 50;
+                    const diff = touchStartX - touchEndX;
+
+                    if (Math.abs(diff) > swipeThreshold) {
+                        if (diff > 0) {
+                            nextSlide();
+                        } else {
+                            prevSlide();
+                        }
+                    }
+                }
+
+                // Eventos de botones
+                prevBtn.addEventListener('click', prevSlide);
+                nextBtn.addEventListener('click', nextSlide);
+
+                // Eventos de teclado (solo cuando el carrusel tiene focus)
+                carousel.addEventListener('keydown', function (e) {
+                    if (e.key === 'ArrowLeft') {
+                        prevSlide();
+                        e.preventDefault();
+                    } else if (e.key === 'ArrowRight') {
+                        nextSlide();
+                        e.preventDefault();
+                    }
+                });
+
+                // Pausar en hover (para desktop)
+                carousel.addEventListener('mouseenter', function () {
+                    stopAutoScroll();
+                });
+
+                carousel.addEventListener('mouseleave', function () {
+                    resetAutoScroll();
+                });
+
+                // Inicializar el carrusel
+                createIndicators();
+                resetAutoScroll();
+
+                // Log de confirmación
+                console.log('Carrusel de opiniones inicializado correctamente');
+
+            })(); // Fin del IIFE
+        }); // Fin del DOMContentLoaded
     </script>
 </body>
 
