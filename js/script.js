@@ -1466,3 +1466,29 @@ window.onclick = function (event) {
     closeTermsModal();
   }
 }
+
+// ===== Curso Popup =====
+(function () {
+  if (!sessionStorage.getItem('cursoPopupDismissed')) {
+    setTimeout(function () {
+      const popup = document.getElementById('cursoPopup');
+      if (popup) popup.classList.add('active');
+    }, 1800);
+  }
+})();
+
+function closeCursoPopup() {
+  const popup = document.getElementById('cursoPopup');
+  if (!popup) return;
+  popup.classList.add('closing');
+  setTimeout(function () {
+    popup.style.display = 'none';
+  }, 300);
+  sessionStorage.setItem('cursoPopupDismissed', '1');
+}
+
+function closeCursoPopupOutside(event) {
+  if (event.target === document.getElementById('cursoPopup')) {
+    closeCursoPopup();
+  }
+}

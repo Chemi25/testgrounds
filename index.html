@@ -660,14 +660,21 @@
   <!-- Curso Promo Banner -->
   <section class="curso-promo">
     <div class="curso-promo-inner">
-      <img src="imagenes/Curso Foto.jpeg" alt="Nuevo Curso de Finanzas Personales - Planifesto" class="curso-promo-img" loading="lazy">
+      <div class="curso-promo-img-wrap">
+        <img src="imagenes/Curso Foto.jpeg" alt="Nuevo Curso de Finanzas Personales - Planifesto" class="curso-promo-img" loading="lazy">
+      </div>
       <div class="curso-promo-content">
         <div class="curso-promo-text">
           <div class="curso-promo-badge">NUEVO</div>
-          <h2 class="curso-promo-title">Nuestro Curso ya está disponible</h2>
-          <p class="curso-promo-subtitle">Aprende a manejar tu dinero paso a paso, con todo lo que necesitas en un solo lugar. Diseñado para que pases de cero a tener el control total de tus finanzas.</p>
+          <h2 class="curso-promo-title">Financieramente Responsable<br><span class="curso-promo-title-accent">de 0 a 100</span></h2>
+          <p class="curso-promo-subtitle">El curso que te enseña a manejar tu dinero de verdad, paso a paso y sin complicaciones.</p>
+          <div class="curso-promo-features">
+            <span class="curso-feature">35+ lecciones en video</span>
+            <span class="curso-feature">Acceso de por vida</span>
+            <span class="curso-feature">Plantilla PRO incluida</span>
+          </div>
         </div>
-        <a href="https://course.planifestoshop.com/" class="curso-promo-btn" target="_blank" rel="noopener noreferrer">Ver el Curso</a>
+        <a href="https://course.planifestoshop.com/" class="curso-promo-btn" target="_blank" rel="noopener noreferrer">Quiero entrar al Curso &#8594;</a>
       </div>
     </div>
   </section>
@@ -921,6 +928,21 @@
           <button class="btn btn-primary" onclick="closeTermsModal()"
             style="padding: 1rem 3rem; font-size: 1.1rem;">Cerrar</button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Curso Popup -->
+  <div class="curso-popup-overlay" id="cursoPopup" onclick="closeCursoPopupOutside(event)">
+    <div class="curso-popup">
+      <button class="curso-popup-close" onclick="closeCursoPopup()" aria-label="Cerrar">&times;</button>
+      <img src="imagenes/Curso Foto.jpeg" alt="Curso Financieramente Responsable - Planifesto" class="curso-popup-img">
+      <div class="curso-popup-body">
+        <div class="curso-popup-badge">NUEVO CURSO</div>
+        <h2 class="curso-popup-title">Financieramente Responsable<br>de 0 a 100</h2>
+        <p class="curso-popup-text">Aprende a manejar tu dinero de verdad, paso a paso y sin complicaciones.</p>
+        <a href="https://course.planifestoshop.com/" class="curso-popup-btn" target="_blank" rel="noopener noreferrer" onclick="closeCursoPopup()">Ver el Curso &#8594;</a>
+        <button class="curso-popup-skip" onclick="closeCursoPopup()">Ahora no</button>
       </div>
     </div>
   </div>
