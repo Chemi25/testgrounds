@@ -1468,23 +1468,26 @@ window.onclick = function (event) {
 }
 
 // ===== Curso Popup =====
-(function () {
-  if (!sessionStorage.getItem('cursoPopupDismissed')) {
+document.addEventListener('DOMContentLoaded', function () {
+  // Limpiar clave anterior si existía
+  sessionStorage.removeItem('cursoPopupDismissed');
+
+  if (!sessionStorage.getItem('cursoPopup_v2_dismissed')) {
     setTimeout(function () {
-      const popup = document.getElementById('cursoPopup');
+      var popup = document.getElementById('cursoPopup');
       if (popup) popup.classList.add('active');
-    }, 1800);
+    }, 1500);
   }
-})();
+});
 
 function closeCursoPopup() {
-  const popup = document.getElementById('cursoPopup');
+  var popup = document.getElementById('cursoPopup');
   if (!popup) return;
   popup.classList.add('closing');
   setTimeout(function () {
     popup.style.display = 'none';
   }, 300);
-  sessionStorage.setItem('cursoPopupDismissed', '1');
+  sessionStorage.setItem('cursoPopup_v2_dismissed', '1');
 }
 
 function closeCursoPopupOutside(event) {

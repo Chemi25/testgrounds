@@ -2322,9 +2322,9 @@ body.gift-mode-active .product-card {
 
 /* ===== Nuevo Curso - Promo Banner ===== */
 .curso-promo {
-  background: linear-gradient(135deg, #4a9d8e 0%, #3a8a7a 60%, #2d7a6a 100%);
+  background: linear-gradient(to bottom, #2d7a6a 0%, #3a8a7a 40%, #5eb6a7 100%);
   padding: 3rem 1.5rem;
-  margin: 0 0 2rem 0;
+  margin: 0;
   position: relative;
   overflow: hidden;
 }
@@ -2562,7 +2562,7 @@ body.gift-mode-active .product-card {
 
 .curso-popup-img {
   width: 100%;
-  height: 230px;
+  height: 185px;
   object-fit: cover;
   object-position: top;
   display: block;
@@ -2642,9 +2642,6 @@ body.gift-mode-active .product-card {
 }
 
 @media (max-width: 768px) {
-  .curso-promo-img-wrap::before {
-    display: none;
-  }
 
   .curso-promo-img {
     width: 100%;
@@ -2681,7 +2678,7 @@ body.gift-mode-active .product-card {
   }
 
   .curso-popup-img {
-    height: 190px;
+    height: 185px;
   }
 
   .curso-popup-body {
