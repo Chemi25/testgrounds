@@ -613,6 +613,7 @@
         <a href="teen.html" class="nav-link">Planifesto Teen</a>
         <a href="contacto.html" class="nav-link">Contacto y FAQ</a>
         <a href="taller/taller.html" class="nav-link">Taller</a>
+        <a href="https://course.planifestoshop.com/" class="nav-link nav-link--curso" target="_blank" rel="noopener noreferrer">Nuevo Curso</a>
       </nav>
     </div>
   </header>
@@ -646,32 +647,6 @@
     </p>
   </section>
 
-  <!-- Valentine's Day Banner -->
-  <section class="valentine-banner" id="valentineBanner">
-    <div class="valentine-hearts" aria-hidden="true">
-      <span class="heart heart-1">&#10084;&#65039;</span>
-      <span class="heart heart-2">&#10084;&#65039;</span>
-      <span class="heart heart-3">&#10084;&#65039;</span>
-      <span class="heart heart-4">&#10084;&#65039;</span>
-      <span class="heart heart-5">&#10084;&#65039;</span>
-    </div>
-    <div class="valentine-content">
-      <h2 class="valentine-title">Regala un Planifesto</h2>
-      <p class="valentine-subtitle">Este San Valent&#237;n, regala organizaci&#243;n financiera. Activa el <strong>Modo Regalo</strong>, obt&#233;n <strong>10% OFF</strong> en todos los productos y nosotros lo enviamos directo a esa persona especial.</p>
-      <div class="valentine-toggle-container">
-        <button class="gift-toggle-btn" id="giftToggleBtn" onclick="toggleGiftMode()">
-          <span class="gift-toggle-icon">&#127873;</span>
-          <span class="gift-toggle-text">Activar Modo Regalo</span>
-        </button>
-      </div>
-      <div class="valentine-code-container" id="valentineCodeContainer" style="display: none;">
-        <p class="valentine-code-label">Promo exclusiva por WhatsApp</p>
-        <span class="valentine-code">10% OFF</span>
-        <p class="valentine-code-note">Selecciona tu producto y completa los datos del regalo</p>
-      </div>
-    </div>
-  </section>
-
   <!-- Quiz Section -->
   <section class="quiz-section">
     <div class="quiz-container">
@@ -682,9 +657,36 @@
     </div>
   </section>
 
+  <!-- Curso Promo Banner -->
+  <section class="curso-promo">
+    <div class="curso-promo-inner">
+      <img src="imagenes/Curso Foto.jpeg" alt="Nuevo Curso de Finanzas Personales - Planifesto" class="curso-promo-img" loading="lazy">
+      <div class="curso-promo-content">
+        <div class="curso-promo-text">
+          <div class="curso-promo-badge">NUEVO</div>
+          <h2 class="curso-promo-title">Nuestro Curso ya está disponible</h2>
+          <p class="curso-promo-subtitle">Aprende a manejar tu dinero paso a paso, con todo lo que necesitas en un solo lugar. Diseñado para que pases de cero a tener el control total de tus finanzas.</p>
+        </div>
+        <a href="https://course.planifestoshop.com/" class="curso-promo-btn" target="_blank" rel="noopener noreferrer">Ver el Curso</a>
+      </div>
+    </div>
+  </section>
+
   <!-- Products Section -->
   <section class="products-section" id="productos">
     <h2 class="section-title">Nuestros Productos</h2>
+    <div class="gift-banner" id="giftBanner">
+      <div class="gift-banner-left">
+        <span class="gift-banner-icon">&#127873;</span>
+        <div>
+          <p class="gift-banner-title">Regala un Planifesto</p>
+          <p class="gift-banner-subtitle">Nosotros lo enviamos directo a esa persona especial</p>
+        </div>
+      </div>
+      <button class="gift-toggle-btn" id="giftToggleBtn" onclick="toggleGiftMode()">
+        <span class="gift-toggle-text">Activar Modo Regalo</span>
+      </button>
+    </div>
     <div class="products-grid">
       <!-- Combo Planifesto -->
       <div class="product-card" data-product="comboPlanifesto" id="comboPlanifesto">
@@ -727,7 +729,8 @@
           </ul>
           <div class="product-buttons">
             <button class="btn btn-primary" onclick="showProductDetails('plantillaPro')">Ver detalles</button>
-            <button class="btn btn-secondary" onclick="toggleNeutral('pro')">Versi&#243;n Neutral</button>
+            <button class="btn btn-secondary" onclick="showProductDetails('plantillaPro', true)">Comprar ahora</button>
+            <button class="btn btn-outline" onclick="toggleNeutral('pro')">Versi&#243;n Neutral</button>
           </div>
         </div>
       </div>
@@ -748,7 +751,8 @@
           <div class="product-buttons">
             <button class="btn btn-primary" onclick="showProductDetails('plantillaBasica')">Ver
               detalles</button>
-            <button class="btn btn-secondary" onclick="toggleNeutral('basic')">Versi&#243;n Neutral</button>
+            <button class="btn btn-secondary" onclick="showProductDetails('plantillaBasica', true)">Comprar ahora</button>
+            <button class="btn btn-outline" onclick="toggleNeutral('basic')">Versi&#243;n Neutral</button>
           </div>
         </div>
       </div>
@@ -927,6 +931,7 @@
       <div class="footer-links">
         <a href="#productos" class="footer-link">Productos</a>
         <a href="contacto.html" class="footer-link">Contacto y FAQ</a>
+        <a href="https://course.planifestoshop.com/" class="footer-link" target="_blank" rel="noopener noreferrer">Nuevo Curso</a>
         <a href="taller/taller.html" class="footer-link">Taller de Finanzas</a>
         <a href="teen.html" class="footer-link">Planifesto Teen</a>
       </div>
